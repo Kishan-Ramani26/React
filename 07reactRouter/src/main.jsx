@@ -8,6 +8,7 @@ import { Layout } from './Layout.jsx'
 import About from './componets/About/About.jsx'
 import Contact from './componets/Contect/Contect.jsx'
 import { User } from './componets/User/User.jsx'
+import { Github } from './componets/GitHub/Github.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path:"user/:userid",
         element:<User />
+      },
+      {
+        path:"github",
+        element:<Github />
       }
     ]
   }

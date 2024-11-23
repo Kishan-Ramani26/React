@@ -20,15 +20,15 @@ export default function Footer() {
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Resources</h2>
                             <ul className="text-gray-500 font-medium">
                                 <li className="mb-4">
-                                    <NavLink to="/" className={({isActive}) => 
+                                    <NavLink to="/" className={({ isActive }) =>
                                         `hover:text-orange-700 ${isActive ? "text-orange-700" : "text-gray-700"}`
                                     }>
                                         Home
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/about" className={({isActive}) =>
-                                    `hover:text-orange-700 ${isActive ? "text-orange-700" : "text-gray-700"}`
+                                    <NavLink to="/about" className={({ isActive }) =>
+                                        `hover:text-orange-700 ${isActive ? "text-orange-700" : "text-gray-700"}`
                                     }>
                                         About
                                     </NavLink>
@@ -39,14 +39,11 @@ export default function Footer() {
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Follow us</h2>
                             <ul className="text-gray-500 font-medium">
                                 <li className="mb-4">
-                                    <a
-                                        href="https://github.com/Kishan-Ramani26"
-                                        className="hover:text-orange-700"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        Github
-                                    </a>
+                                    <NavLink to="/github" className={({ isActive }) =>
+                                        `hover:text-orange-700 ${isActive ? "text-orange-700" : "text-gray-700"}`
+                                    }>
+                                        GitHub
+                                    </NavLink>
                                 </li>
                                 <li>
                                     <Link to="/" className="hover:text-orange-700">
