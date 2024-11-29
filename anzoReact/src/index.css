@@ -45,3 +45,12 @@
     position: relative;
     perspective: 1000px;
 }
+
+#section2{
+    position: relative;
+    perspective: 3000px;
+}
+
+.rtext{
+    transform-origin: 100% 70%;
+}
