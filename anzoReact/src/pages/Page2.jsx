@@ -74,7 +74,7 @@ export const Page2 = () => {
                         </g>
                     </svg>
                 </div>
-                <div className='absolute h-0.5 w-[40%] bg-black mt-[3vw] left-1/2 -translate-x-1/2'></div>
+                <div className='absolute h-0.5 w-[40%] bg-black mt-[6vw] left-1/2 -translate-x-1/2'></div>
             </div>
         </>
     )
