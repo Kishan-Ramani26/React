@@ -23,16 +23,15 @@ function App() {
   }
 
   useEffect(() => {
-    const todos = JSON.parse(localStorage.getItem("todos"))
-
-    if (todos && todos.lenght > 0) {
-      setTodos(todos)
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos)); // Parse the JSON string to an array
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("todos",JSON.stringify(Todos))
-  },[Todos])
+    localStorage.setItem("todos", JSON.stringify(Todos))
+  }, [Todos])
 
 
   return (
@@ -45,15 +44,13 @@ function App() {
           </div>
           <div className="flex flex-wrap gap-y-3">
             {/*Loop and Add TodoItem here */}
-            {
-              Todos.map((todo) => (
-                <div key={todo.id}
+            {Todos.map((todo) => {
+              return <div key={todo.id}
                 className="w-full"
-                >
-                  <TodoItem todo={todo} />
-                </div>
-              ))
-            }
+              >
+                <TodoItem todo={todo} />
+              </div>
+            })}
           </div>
         </div>
       </div>
