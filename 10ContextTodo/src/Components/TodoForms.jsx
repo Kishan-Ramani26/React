@@ -1,18 +1,18 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useTodo } from '../Contexts'
 
 const TodoForms = () => {
-const [Todo, setTodo] = useState("")
 
-const {addTodo} = useTodo()
+    const [Todo, setTodo] = useState("")
+    const { addTodo } = useTodo()
 
-const add = (e) => {
-    e.preventDefault()
+    const add = (e) => {
+        e.preventDefault()
+        if (!Todo) return
 
-    if(!Todo) return
-    
-    addTodo({todo : Todo,completed : false})
-}
+        addTodo({ todo: Todo, completed: false })
+        setTodo("")
+    }
 
     return (
         <form onSubmit={add} className="flex">
