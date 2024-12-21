@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
-import { useTodo } from '../Contexts';
 
-const TodoIteam = () => {
-    const [isTodoEditable, setisTodoEditable] = useState(false)
-
-
-    const { updateTodo, deleteTodo, completeTodo } = useTodo()
+function TodoItem({ todo }) {
 
     return (
         <div
-            className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
-                }`}
+            className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${
+                todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
+            }`}
         >
             <input
                 type="checkbox"
@@ -20,8 +16,9 @@ const TodoIteam = () => {
             />
             <input
                 type="text"
-                className={`border outline-none w-full bg-transparent rounded-lg ${isTodoEditable ? "border-black/10 px-2" : "border-transparent"
-                    } ${todo.completed ? "line-through" : ""}`}
+                className={`border outline-none w-full bg-transparent rounded-lg ${
+                    isTodoEditable ? "border-black/10 px-2" : "border-transparent"
+                } ${todo.completed ? "line-through" : ""}`}
                 value={todoMsg}
                 onChange={(e) => setTodoMsg(e.target.value)}
                 readOnly={!isTodoEditable}
@@ -48,7 +45,7 @@ const TodoIteam = () => {
                 ❌
             </button>
         </div>
-    )
+    );
 }
 
-export default TodoIteam
+export default TodoItem;
