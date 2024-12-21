@@ -9,8 +9,12 @@ function TodoItem({ todo }) {
     const { updateTodo, deleteTodo, completeTodo } = useTodo()
 
     const editTodo = () => {
-        updateTodo(todo.id,{...todo,todo:todoMsg})
+        updateTodo(todo.id, { ...todo, todo: todoMsg })
         setisTodoEditable(false)
+    }
+
+    const toggleCompleted = () => {
+        completeTodo(todo.id)
     }
     return (
         <div
@@ -28,7 +32,7 @@ function TodoItem({ todo }) {
                 className={`border outline-none w-full bg-transparent rounded-lg ${isTodoEditable ? "border-black/10 px-2" : "border-transparent"
                     } ${todo.completed ? "line-through" : ""}`}
                 value={todoMsg}
-                onChange={(e) => setTodoMsg(e.target.value)}
+                onChange={(e) => settodoMsg(e.target.value)}
                 readOnly={!isTodoEditable}
             />
             {/* Edit, Save Button */}
@@ -39,7 +43,7 @@ function TodoItem({ todo }) {
 
                     if (isTodoEditable) {
                         editTodo();
-                    } else setIsTodoEditable((prev) => !prev);
+                    } else setisTodoEditable((prev) => !prev);
                 }}
                 disabled={todo.completed}
             >
