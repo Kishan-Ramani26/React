@@ -23,9 +23,14 @@ function App() {
   }
 
   useEffect(() => {
-    const storedTodos = localStorage.getItem("todos");
-    if (storedTodos) {
-      setTodos(JSON.parse(storedTodos)); // Parse the JSON string to an array
+    // const storedTodos = localStorage.getItem("todos");
+    // if (storedTodos) {
+    //   setTodos(JSON.parse(storedTodos)); // Parse the JSON string to an array
+    // }
+
+    const storedTodos =JSON.parse(localStorage.getItem("todos"))
+    if(storedTodos && storedTodos.lenght > 0){
+      setTodos(storedTodos)
     }
   }, [])
 
