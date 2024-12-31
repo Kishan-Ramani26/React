@@ -3,9 +3,15 @@ import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
     return (
-        <div className='h-10 w-screen px-10 pt-5 text-white left-0 top-0 sticky z-50'>
-            <NavLink className={({isActive})=> 'hover:cursor-pointer'}>
+        <div className='h-[5vw] w-screen px-10 pt-5 bg-black text-white left-0 top-0 sticky flex justify-between items-center z-50'>
+            <NavLink to="/" className={({isActive})=> `hover:cursor-pointer ${isActive ? "text-orange-500" : "text-white"}`}>
                 Home
+            </NavLink>
+            <NavLink to="/about" className={({isActive})=> `hover:cursor-pointer ${isActive ? "text-orange-500" : "text-white"}`}>
+                About
+            </NavLink>
+            <NavLink to="/contect" className={({isActive})=> `hover:cursor-pointer ${isActive ? "text-orange-500" : "text-white"}`}>
+                Contect
             </NavLink>
         </div>
     )
