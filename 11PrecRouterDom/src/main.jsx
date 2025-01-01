@@ -7,6 +7,7 @@ import Layout from './assets/Layout/Layout.jsx'
 import About from './assets/About/About.jsx'
 import Contect from './assets/Contect/Contect.jsx'
 import Home from './assets/Home/Home.jsx'
+import Gtihub from './assets/Github/Gtihub.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       {
         path:"contect",
         element:<Contect />
-      }
+      },
+      {
+        path:"Github",
+        element:<Gtihub />
+      },
     ]
   }
 ])

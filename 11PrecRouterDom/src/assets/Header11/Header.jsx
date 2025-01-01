@@ -13,6 +13,9 @@ const Header = () => {
             <NavLink to="/contect" className={({isActive})=> `hover:cursor-pointer ${isActive ? "text-orange-500" : "text-white"}`}>
                 Contect
             </NavLink>
+            <NavLink to="/GitHub" className={({isActive})=> `hover:cursor-pointer ${isActive ? "text-orange-500" : "text-white"}`}>
+                Github
+            </NavLink>
         </div>
     )
 }
