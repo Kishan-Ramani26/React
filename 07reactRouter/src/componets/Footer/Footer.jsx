@@ -46,6 +46,16 @@ export default function Footer() {
                                     </NavLink>
                                 </li>
                                 <li>
+                                    <NavLink
+                                        to="/login"
+                                        className={({ isActive }) =>
+                                            `hover:text-orange-700 ${isActive ? "text-orange-700" : "text-gray-700"}`
+                                        }
+                                    >
+                                        Login
+                                    </NavLink>
+                                </li>
+                                <li>
                                     <Link to="/" className="hover:text-orange-700">
                                         Discord
                                     </Link>
