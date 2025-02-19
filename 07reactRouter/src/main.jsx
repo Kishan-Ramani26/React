@@ -21,24 +21,24 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path:"about",
-        element:<About />
+        path: "about",
+        element: <About />
       },
       {
-        path:"contect",
-        element:<Contact />
+        path: "contect",
+        element: <Contact />
       },
       {
-        path:"user/:userid",
-        element:<User />
+        path: "user/:userid",
+        element: <User />
       },
       {
-        path:"github",
-        element:<Github />
+        path: "github",
+        element: <Github />
       },
       {
-        path:"login",
-        element:<Login />
+        path: "login",
+        element: <Login />
       }
     ]
   }
@@ -47,6 +47,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <userContextProvider>
+      <RouterProvider router={router} />
+    </userContextProvider>
   </StrictMode>,
 )
