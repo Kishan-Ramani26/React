@@ -68,17 +68,74 @@ export class service {
     }
   }
 
-  async getPost(slug){
+  async getPost(slug) {
     try {
-        return await this.database.getDocument(
-            config.appwriteDataBaseID,
-            config.appwriteCollectionID,
-            slug
-        )
+      // get only one data
+
+      return await this.database.getDocument(
+        config.appwriteDataBaseID,
+        config.appwriteCollectionID,
+        slug
+      );
     } catch (error) {
-        throw error
+      throw error;
     }
   }
+  async listPost() {
+    try {
+      // get all the post
+
+      return await this.database.listDocuments(
+        config.appwriteDataBaseID,
+        config.appwriteCollectionID,
+        [Query.equal("status", "active")]
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // file upload methods
+
+  async uplodFile(file) {
+    try {
+      return await this.bucket.createFile(
+        config.appwrtiteBucketID,
+        ID.unique(),
+        file
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteFile(fileID) {
+    try {
+      await this.bucket.deleteFile(
+        config.appwrtiteBucketID
+        , fileID
+    );
+      return true;
+    } catch (error) {
+      throw error;
+      return false;
+    }
+  }
+
+  async filePreview(fileID){
+    try {
+        return await this.bucket.getFilePreview(
+            config.appwrtiteBucketID,
+            fileID
+        )
+        return true
+        
+    } catch (error) {
+        throw error
+        return false
+    }
+  }
+  
 }
 
 const Service = new service();
