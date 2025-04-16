@@ -17,18 +17,39 @@ export class service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({titale,slug,content,featuredIamge,status,userID}){
+  async createPost({ titale, slug, content, featuredIamge, status, userID }) {
     try {
+      return await this.database.createDocument(
         config.appwriteDataBaseID,
         config.appwriteCollectionID,
         slug,
         {
-            titale,
-            content,
-            featuredIamge,
-            status,
-            userID,
+          titale,
+          content,
+          featuredIamge,
+          status,
+          userID,
         }
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updatePost(slug,{titale,content,featuredIamge,status,userID}){
+    try {
+        return await this.database.updateDocument(
+            config.appwriteDataBaseID,
+            config.appwriteCollectionID,
+            slug,
+            {
+                titale,
+                content,
+                featuredIamge,
+                status,
+                userID,
+            }
+        )
     } catch (error) {
         throw error
     }
