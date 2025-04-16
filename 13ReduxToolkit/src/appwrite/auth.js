@@ -4,7 +4,7 @@ import {Client,Account,ID} from "appwrite";
 export class AuthService{
 
     client = new Client();
-    
+    account;
 
     constructor(){
         this.client
@@ -16,15 +16,24 @@ export class AuthService{
 
     async createAccount({email,password,name}){
         try {
-            const userAccount = await this.client.account.create(ID.unique(),email,password,name);
+            const userAccount = await this.account.create(ID.unique(),email,password,name);
             if (userAccount) {
-                return userAccount;
+                // call another method
+
+                
             } else {
-                error = new Error("User account not created");
-                throw error;
+                return userAccount
             }
         } catch (error) {
             throw error;
+        }
+    }
+
+    async login({email,password}){
+        try {
+            await this.account.getSession('')
+        } catch (error) {
+            throw error
         }
     }
 }
