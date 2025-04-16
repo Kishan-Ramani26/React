@@ -36,33 +36,44 @@ export class service {
     }
   }
 
-  async updatePost(slug,{titale,content,featuredIamge,status,userID}){
+  async updatePost(slug, { titale, content, featuredIamge, status, userID }) {
     try {
-        return await this.database.updateDocument(
-            config.appwriteDataBaseID,
-            config.appwriteCollectionID,
-            slug,
-            {
-                titale,
-                content,
-                featuredIamge,
-                status,
-                userID,
-            }
-        )
+      return await this.database.updateDocument(
+        config.appwriteDataBaseID,
+        config.appwriteCollectionID,
+        slug,
+        {
+          titale,
+          content,
+          featuredIamge,
+          status,
+          userID,
+        }
+      );
     } catch (error) {
-        throw error
+      throw error;
     }
   }
 
-
-  async deletePost(slug){   
+  async deletePost(slug) {
     try {
-        return await this.database.listDocuments(
+      await this.database.deleteDocument(
+        config.appwriteDataBaseID,
+        config.appwriteCollectionID,
+        slug
+      );
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getPost(slug){
+    try {
+        return await this.database.getDocument(
             config.appwriteDataBaseID,
             config.appwriteCollectionID,
-            slug,
-            {},
+            slug
         )
     } catch (error) {
         throw error
