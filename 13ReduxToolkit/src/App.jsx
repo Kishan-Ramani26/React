@@ -47,7 +47,7 @@ function App() {
             <div className="h-screen w-full flex items-center justify-between flex-col ">
               <Header />
               <main>
-                {/* < Outlet /> */}
+                < Outlet />
               </main>
               <Footer />
             </div>
