@@ -17,14 +17,18 @@ function Login() {
         seterror("");
         try {
             const session = await authService.login(data)
-            
+            if(session){
+              const userData = await authService.getCurrentUser()
+              if(userData) Dispatch(authlogin(userData))
+                navigate("/")
+            }
         } catch (error) {
             seterror(error.message)
         }
     }
 
   return (
-    <div>Login</div>
+    
   )
 }
 
