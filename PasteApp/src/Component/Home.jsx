@@ -1,11 +1,33 @@
-import React, { useState } from "react";
-import {useSearchParams} from 'react-router-dom'
+import React, { useState , useId } from "react";
+import { useSearchParams } from "react-router-dom";
+import {useDispatch} from 'react-redux'
+import { addToPaste } from "../Store/Slice";
+
 
 const Home = () => {
   const [title, settitle] = useState("");
   const [TextArea, setTextArea] = useState("");
-  const [serachParams, setSerachParams] = useSearchParams()
-  const pasteID = serachParams.get("pasteID")
+  const [serachParams, setSerachParams] = useSearchParams();
+  const pasteID = serachParams.get("pasteID");
+  const dispatch = useDispatch
+
+
+  const createHandler = () => {
+      const paste = {
+        title : title,
+        content : TextArea,
+        _id : pasteID || Date.now().toString(36),
+        createdAt : new Date().toISOString(),
+      }
+
+      if(pasteID){
+        // update
+        dispatch(updatePaste(paste))
+      }else{
+        // create
+        dispatch(addToPaste(paste))
+      }
+  };
 
   return (
     <>
@@ -18,7 +40,9 @@ const Home = () => {
             onChange={(e) => settitle(e.target.value)}
             className="py-2 px-4 border border-white rounded-xl"
           />
-          <button>{ pasteID ? "Update" : "Create"}</button>
+          <button onClick={createHandler()}>
+            {pasteID ? "Update" : "Create"}
+          </button>
         </div>
         <div>
           <textarea

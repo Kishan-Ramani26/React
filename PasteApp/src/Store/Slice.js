@@ -10,7 +10,9 @@ export const Slice = createSlice({
     initialState,
     reducers:{
         addToPaste : (state,action)=>{
-            
+            const paste = action.payload;
+            state.pastes.puch(paste)
+            localStorage.setItem("pastes" ,state.pastes)
         },
         removeFormPaste : (state,action)=>{
 
