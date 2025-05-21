@@ -10,7 +10,7 @@ export const Slice = createSlice({
     initialState,
     reducers:{
         addToPaste : (state,action)=>{
-
+            
         },
         removeFormPaste : (state,action)=>{
 

@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import {useSearchParams} from 'react-router-dom'
 
 const Home = () => {
   const [title, settitle] = useState("");
   const [TextArea, setTextArea] = useState("");
+  const [serachParams, setSerachParams] = useSearchParams()
+  const pasteID = serachParams.get("pasteID")
+
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -14,7 +18,7 @@ const Home = () => {
             onChange={(e) => settitle(e.target.value)}
             className="py-2 px-4 border border-white rounded-xl"
           />
-          <button>Create</button>
+          <button>{ pasteID ? "Update" : "Create"}</button>
         </div>
         <div>
           <textarea
