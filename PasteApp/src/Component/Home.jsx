@@ -9,7 +9,7 @@ const Home = () => {
   const [TextArea, setTextArea] = useState("");
   const [serachParams, setSerachParams] = useSearchParams();
   const pasteID = serachParams.get("pasteID");
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
 
   const createHandler = () => {
@@ -26,6 +26,7 @@ const Home = () => {
       }else{
         // create
         dispatch(addToPaste(paste))
+        console.log("create paste");
       }
   };
 
@@ -40,7 +41,7 @@ const Home = () => {
             onChange={(e) => settitle(e.target.value)}
             className="py-2 px-4 border border-white rounded-xl"
           />
-          <button onClick={createHandler()}>
+          <button onClick={createHandler}>
             {pasteID ? "Update" : "Create"}
           </button>
         </div>
