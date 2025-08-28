@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function Protected({ children, authentication = true }) {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   const [loader, setloader] = useState(true);
 
@@ -11,15 +11,15 @@ export default function Protected({ children, authentication = true }) {
 
     
     if (authentication && authStatus !== authentication) {
-      Navigate("/login");
+      navigate("/login");
     } 
     
     // false && true !== true -it means user is authenticate
     else if (!authentication && authStatus !== authentication) {
-      Navigate("/");
+      navigate("/");
     }
     setloader(false);
-  }, [authentication, Navigate, authStatus]);
+  }, [authentication, navigate, authStatus]);
 
   return loader ? <h1>Loading...</h1> : <>{children}</>;
 }

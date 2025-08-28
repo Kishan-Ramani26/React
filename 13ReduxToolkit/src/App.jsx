@@ -5,7 +5,9 @@ import { Footer } from "./Components";
 import Header from "./Components/Header/Header";
 import authService from "./appwrite/auth";
 import { login, logout } from "./Store/authSlice";
-import {Outlet} from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
+import Login from "./Components/Login";
+import SingUp from "./Components/SingUp";
 
 function App() {
   console.log(import.meta.env.VITE_APPWRITE_URL);
@@ -44,16 +46,19 @@ function App() {
 
   return !loading ? (
     <div className="min-h-screen flex items-center justify-center flex-col">
-            <div className="h-screen w-full flex items-center justify-between flex-col ">
-              <Header />
-              <main>
-                < Outlet />
-              </main>
-              <Footer />
-            </div>
-          </div> 
-  )
-  : null
+      <div className="h-screen w-full flex items-center justify-between flex-col ">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SingUp />} />
+            <Route path="/" element={<div /> } />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </div>
+  ) : null
 
 }
 

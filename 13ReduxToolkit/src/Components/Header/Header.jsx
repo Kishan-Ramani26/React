@@ -40,7 +40,7 @@ const Header = () => {
     <header className="py-3 shadow w-full flex items-center justify-between bg-gray-500">
       <Container>
         <nav className="flex items-center justify-between">
-          <div className="mr-4">
+          <div className="mr-4 flex items-center justify-between gap-14">
             <Link to="/">
               <Logo />
             </Link>

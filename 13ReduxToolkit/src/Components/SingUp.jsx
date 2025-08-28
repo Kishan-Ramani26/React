@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Input, Logo } from "./index";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ import authService from "../appwrite/auth";
 const SingUp = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const Dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [error, seterror] = useState("");
 
   const create = async (data) => {
@@ -17,8 +17,8 @@ const SingUp = () => {
     try {
       const userData = await authService.createAccount(data);
       if (userData) {
-        const user = authService.getCurrentUser();
-        if (user) Dispatch(login(user));
+        const user = await authService.getCurrentUser();
+        if (user) dispatch(login({ userData: user }));
         navigate("/");
       }
     } catch (error) {
@@ -27,7 +27,7 @@ const SingUp = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="h-screen flex items-center justify-center text-black">
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
@@ -80,7 +80,7 @@ const SingUp = () => {
                 required: true,
               })}
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" c>
               Create Account
             </Button>
           </div>
