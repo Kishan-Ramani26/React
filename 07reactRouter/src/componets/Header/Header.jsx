@@ -83,8 +83,6 @@ export default function Header() {
                                     Login
                                     </NavLink>
                             </li>
-
-
                         </ul>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useRef,useState } from "react";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
+import Props1 from "./Props/Props1";
 
 function App() {
 
@@ -22,13 +23,14 @@ useGSAP(()=>{
 
   return (
     <>
-      <div className="h-screen w-full bg-black text-white flex items-center justify-center">
+      {/* <div className="h-screen w-full bg-black text-white flex items-center justify-center">
              <div ref={reff} className="h-40 w-40 bg-red-700 rounded-md relative cursor-pointer flex items-center justify-center active:scale-95" onClick={()=>{
               setval(random)
               setvalY(randomY)
              }}>👌
              </div>
-      </div>
+      </div> */}
+      <Props1 />
     </>
   )
 }
