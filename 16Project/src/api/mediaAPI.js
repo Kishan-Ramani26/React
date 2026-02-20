@@ -14,7 +14,6 @@ export const searchUnsplash = async (query,page=1,per_page=20) => {
         },
         headers: {
             Authorization: `Client-ID ${unsplashAccessKey}`,
-
         },
     });
     console.log("Unsplash Response:", response.data);
@@ -26,22 +25,32 @@ export const searchUnsplash = async (query,page=1,per_page=20) => {
 };
 
 
-export const searchPexels = async (query,page=1,per_page=10) => {
+export const VideoPexels = async (query,page=1,per_page=10) => {
   try {
-    const response = await axios.get(`https://api.pexels.com/v1/search`, {
+    if (!pexelsKey) {
+      console.error('Pexels API key missing. Set VITE_PEXELS_KEY in your .env file.');
+      return [];
+    }
+    const response = await axios.get(`https://api.pexels.com/videos/search`, {
         params: {
             query: query,
             page: page,
             per_page: per_page
         },
-        headers: {
-            Authorization: `Client-ID ${pexelsKey}`,
+        headers: {        
+        Authorization: pexelsKey,
         },
     });
     console.log("Pexels Response:", response.data);
-    return response.data.photos;
+    return response.data.videos;
     } catch (error){
-    console.error("Error fetching from Pexels:", error);
-    return [];
-  }
+      if (error.response) {
+        console.error("Error fetching from Pexels:", error.response.status, error.response.data);
+      } else {
+        console.error("Error fetching from Pexels:", error.message);
+      }
+      return [];
+    }
 }
+
+
