@@ -2,7 +2,9 @@ import React from 'react'
 
 const ResulteCard = () => {
   return (
-    <div>ResulteCard</div>
+    <>
+      <div className='h-60 bg-gray-400 rounded-lg m-2'></div>
+    </>
   )
 }
 
