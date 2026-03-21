@@ -7,6 +7,8 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import { useEffect } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 function dog() {
   const scene = useGLTF("/Model/dog.drc.glb");
@@ -18,16 +20,13 @@ function dog() {
     gl.outputColorSpace = THREE.SRGBColorSpace;
   });
 
-  
   const { actions } = useAnimations(scene.animations, scene.scene);
 
-  useEffect(()=>{
-    if(actions["Take 001"]){
-      actions["Take 001"].play();      
+  useEffect(() => {
+    if (actions["Take 001"]) {
+      actions["Take 001"].play();
     }
-  },[actions])
-
-
+  }, [actions]);
 
   // const texture = useTexture(
   //   {
@@ -41,47 +40,58 @@ function dog() {
   //   },
   // );
 
-  const [normalMap, sampleMatcap, branchesNormalMap] = useTexture([
+  const [normalMap, sampleMatcap] = useTexture([
     "/dog_normals.jpg",
     "/Matcap/mat-2.png",
-    "/branches_normals.jpeg",
   ]).map((texture) => {
     texture.flipY = false;
     texture.colorSpace = THREE.SRGBColorSpace;
     return texture;
   });
 
-  const material = new THREE.MeshMatcapMaterial({
+  const [branchesNormalMap, branchMap] = useTexture([
+    "/branches_normals.jpeg",
+    "/branches_diffuse.jpeg",
+  ]).map((texture) => {
+    texture.flipY = true;
+    texture.colorSpace = THREE.SRGBColorSpace;
+    return texture;
+  });
+
+  const dogmaterial = new THREE.MeshMatcapMaterial({
     normalMap: normalMap,
     matcap: sampleMatcap,
-    branchesNormalMap: branchesNormalMap,
+  });
+
+  const branchMaterial = new THREE.MeshMatcapMaterial({
+    normalMap: branchesNormalMap,
+    map: branchMap,
   });
 
   scene.scene.traverse((child) => {
     if (child.name.includes("DOGSTUDIO")) {
-      child.material = material;
+      child.material = dogmaterial;
     }
     if (child.name.includes("BRANCHS")) {
-      child.material = material;
+      child.material = branchMaterial;
     }
   });
 
   return (
     <>
-      <primitive
-        object={scene.scene}
-        position={[0.45, -1.8, 0]}
-        rotation={[0, Math.PI / 4.5, 0]}
-        scale={[3, 3, 3]}
-        animation={actions}
-      />
-      <directionalLight position={[0, 5, 5]} ity={10} color={0xffffff} />
-      <OrbitControls
-        enableDamping={true}
-        enablePan={false}
-        minPolarAngle={0}
-        maxPolarAngle={Math.PI}
-      />
+      
+        <primitive
+          object={scene.scene}
+          position={[0.45, -1.8, 0]}
+          rotation={[0, Math.PI / 4.5, 0]}
+          scale={[3, 3, 3]}
+          animation={actions}
+        />
+        <directionalLight
+          position={[0, 5, 5]}
+          intensity={10}
+          color={0xffffff}
+        />
     </>
   );
 }
