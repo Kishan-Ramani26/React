@@ -6,9 +6,12 @@ import {
   useAnimations,
 } from "@react-three/drei";
 import * as THREE from "three";
-import { useEffect } from "react";
-import { useGSAP } from "@gsap/react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// register plugin once at module load
+if (gsap && gsap.registerPlugin) gsap.registerPlugin(ScrollTrigger);
 
 function dog() {
   const scene = useGLTF("/Model/dog.drc.glb");
@@ -76,22 +79,61 @@ function dog() {
       child.material = branchMaterial;
     }
   });
+  const modelRef = useRef(scene.scene);
+
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section-1",
+        endTrigger: ".section-3",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+        markers: true,
+      },
+    });
+
+    tl.to(
+      modelRef.current.rotation,
+      {
+        y: `-=${Math.PI * 2}`,
+        ease: "none",
+      },
+      "<",
+    );
+
+    tl.to(
+      modelRef.current.position,
+      {
+        z: "-=1.2",
+        y: "+=1",
+        ease: "none",
+      },
+      "<",
+    );
+
+    tl.to(
+      modelRef.current.scale,
+      {
+        x: 2,
+        y: 2,
+        z: 2,
+        ease: "none",
+      },
+      "<",
+    );
+  }, []);
 
   return (
     <>
-      
-        <primitive
-          object={scene.scene}
-          position={[0.45, -1.8, 0]}
-          rotation={[0, Math.PI / 4.5, 0]}
-          scale={[3, 3, 3]}
-          animation={actions}
-        />
-        <directionalLight
-          position={[0, 5, 5]}
-          intensity={10}
-          color={0xffffff}
-        />
+      <primitive
+        ref={modelRef}
+        object={scene.scene}
+        position={[0.45, -1.8, 0]}
+        rotation={[0, Math.PI / 4.5, 0]}
+        scale={[3, 3, 3]}
+      />
+      <directionalLight position={[0, 5, 5]} intensity={10} color={0xffffff} />
     </>
   );
 }
