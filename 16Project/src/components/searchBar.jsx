@@ -5,18 +5,17 @@ import { setQuery } from "../redux/features/searchSlice";
 const searchBar = () => {
   const [text, setText] = useState("");
 
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
 
     const query = text.trim();
     console.log("Search query:", query);
-
-    dispatch(setQuery(query));
-
+    dispatch(setQuery(query));    
     setText("");
   };
+
 
   return (
     <>

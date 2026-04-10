@@ -79,6 +79,7 @@ function dog() {
       child.material = branchMaterial;
     }
   });
+
   const modelRef = useRef(scene.scene);
 
   useEffect(() => {
@@ -106,7 +107,7 @@ function dog() {
       modelRef.current.position,
       {
         z: "-=1.2",
-        y: "+=1",
+        y: "+=1",        
         ease: "none",
       },
       "<",

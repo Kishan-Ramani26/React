@@ -52,5 +52,3 @@ export const VideoPexels = async (query,page=1,per_page=10) => {
       return [];
     }
 }
-
-

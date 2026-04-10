@@ -1,14 +1,13 @@
 import ResulteCard from "./ResulteCard";
-import { VideoPexels, searchUnsplash } from "../api/mediaAPI";
+import { searchUnsplash } from "../api/mediaAPI";
 import {
   setError,
   setLoading,
   setQuery,
   setResults,
-  setActiveTab,
+  clearResults  
 } from "../redux/features/searchSlice.js";
 import { useDispatch, useSelector } from "react-redux";
-import { store } from "../redux/store.js";
 import { useEffect } from "react";
 
 const ResulteGrid = () => {
@@ -20,10 +19,15 @@ const ResulteGrid = () => {
     const fetchImg = async () => {
       if (activeTab === "photos") {
         try {
-          useDispatch(setLoading()); 
+          useDispatch(setLoading());
           const data = await searchUnsplash(query);
           console.log("Fetched Unsplash Data:", data);
-        } catch (error) {}
+          useDispatch(setResults(data));
+          useDispatch(setLoading(false));          
+        } catch (error) {
+          console.error("Error in fetchImg (Unsplash):", error);
+          useDispatch(setError("Failed to fetch photos. Please try again."));
+        }
       }
     };
   }, [results, query, activeTab]);
@@ -31,6 +35,7 @@ const ResulteGrid = () => {
   return (
     <>
       <div className="w-full h-auto bg-gray-300 mt-10 rounded-lg grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] text-2xl p-3 font-bold text-gray-700">
+        <ResulteCard />
         <ResulteCard />
         <ResulteCard />
         <ResulteCard />

@@ -1,9 +1,13 @@
-import React from 'react'
+import searchBar from "./searchBar"
 
 const ResulteCard = () => {
+  
+
   return (
     <>
-      <div className='h-60 bg-gray-400 rounded-lg m-2'></div>
+      <div className='h-100 bg-gray-400 rounded-lg m-2'>
+         
+      </div>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Dog from "./components/dog";
+import Dog from "./components/Dog";
 import { Canvas } from "@react-three/fiber";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/ScrollSmoother";
@@ -29,13 +29,14 @@ function App() {
           position: "fixed",
           top: "0",
           left: "0",
+          zIndex: "-1",
         }}
       >
         <Dog />
       </Canvas>
       <div id="smooth-wrapper" className=" w-full relative">
         <div id="smooth-content" className=" w-full">
-          <section className="section-1 h-screen w-full flex items-center justify-center">
+          <section className="section-1 h-screen bg-[url('./background-xl.png')] bg-cover bg-center w-full flex items-center justify-center">
             <h1 className="text-4xl font-bold text-white">Dog Studio</h1>
           </section>
 
