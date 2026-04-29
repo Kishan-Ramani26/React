@@ -12,25 +12,25 @@ const searchBar = () => {
 
     const query = text.trim();
     console.log("Search query:", query);
-    dispatch(setQuery(query));    
+    dispatch(setQuery(query));
     setText("");
   };
 
 
   return (
     <>
-      <form className="flex gap-3 px-14 py-10" onSubmit={submitHandler}>
+      <form className="flex gap-4 px-14 py-10" onSubmit={submitHandler}>
         <input
           required
           type="text"
           placeholder="Search for media..."
-          className="w-full p-2  outline-none border-2 border-gray-300 rounded-lg"
+          className="w-full px-4 py-2  outline-none border-2 border-gray-300 rounded-[20px] focus:border-blue-500 transition-colors duration-300"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
         <button
           type="submit"
-          className="bg-blue-500 active:scale-95 uppercase text-white px-4 py-2 rounded-lg ml-2 cursor-pointer"
+          className="bg-blue-500 active:scale-95 text-white px-6 py-2 text-[1.1vw] rounded-[20px] ml-2 cursor-pointer"
         >
           Search
         </button>

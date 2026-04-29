@@ -1,15 +1,26 @@
-import searchBar from "./searchBar"
+import React from "react";
+import { useSelector } from "react-redux";
 
-const ResulteCard = () => {
-  
+const ResulteCard = ({ item }) => {
+  const activeTab = useSelector((store) => store.search.activeTab);
+  const results = useSelector((store) => store.search.results);
 
-  return (
-    <>
-      <div className='h-100 bg-gray-400 rounded-lg m-2'>
-         
-      </div>
-    </>
-  )
-}
+  return;
+  <>
+    <div className="columns-[4_200pc] w-full h-auto ">
+      {activeTab === "photos" &&
+        results.map((item) => (
+          <div key={item.id} className="w-full h-auto mb-4">
+            <img
+              src={item.src}
+              alt={item.title}
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        ))}
+    </div>
+    ;
+  </>;
+};
 
-export default ResulteCard
+export default ResulteCard;

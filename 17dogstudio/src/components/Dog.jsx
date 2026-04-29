@@ -6,14 +6,14 @@ import {
   useAnimations,
 } from "@react-three/drei";
 import * as THREE from "three";
-import { useEffect, useRef } from "react";
+import { use, useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // register plugin once at module load
 if (gsap && gsap.registerPlugin) gsap.registerPlugin(ScrollTrigger);
 
-function dog() {
+function Dog() {
   const scene = useGLTF("/Model/dog.drc.glb");
 
   useThree(({ camera, scene, gl }) => {
@@ -43,16 +43,18 @@ function dog() {
   //   },
   // );
 
-  const [normalMap, sampleMatcap] = useTexture([
+  const [normalMap, sampleMatcap, matcap3] = useTexture([
     "/dog_normals.jpg",
     "/Matcap/mat-2.png",
+    "/Matcap/mat-3.png",
   ]).map((texture) => {
     texture.flipY = false;
     texture.colorSpace = THREE.SRGBColorSpace;
     return texture;
   });
 
-  const [branchesNormalMap, branchMap] = useTexture([
+  // Load branches normal and diffuse (color) map
+  const [branchesNormalMap, branchesDiffuseMap] = useTexture([
     "/branches_normals.jpeg",
     "/branches_diffuse.jpeg",
   ]).map((texture) => {
@@ -66,17 +68,20 @@ function dog() {
     matcap: sampleMatcap,
   });
 
-  const branchMaterial = new THREE.MeshMatcapMaterial({
+  // Use MeshStandardMaterial for correct diffuse map rendering
+  const branchMaterial = new THREE.MeshStandardMaterial({
     normalMap: branchesNormalMap,
-    map: branchMap,
+    map: branchesDiffuseMap,
   });
 
   scene.scene.traverse((child) => {
-    if (child.name.includes("DOGSTUDIO")) {
-      child.material = dogmaterial;
-    }
-    if (child.name.includes("BRANCHS")) {
-      child.material = branchMaterial;
+    if (child.isMesh) {
+      if (child.name.includes("DOGSTUDIO")) {
+        child.material = dogmaterial;
+      }
+      if (child.name.toUpperCase().includes("BRANCH")) {
+        child.material = branchMaterial;
+      }
     }
   });
 
@@ -107,7 +112,7 @@ function dog() {
       modelRef.current.position,
       {
         z: "-=1.2",
-        y: "+=1",        
+        y: "+=1",
         ease: "none",
       },
       "<",
@@ -125,6 +130,7 @@ function dog() {
     );
   }, []);
 
+
   return (
     <>
       <primitive
@@ -139,4 +145,4 @@ function dog() {
   );
 }
 
-export default dog;
+export default Dog;
