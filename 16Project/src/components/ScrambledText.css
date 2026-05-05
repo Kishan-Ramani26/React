@@ -1,0 +1,18 @@
+.text-block {
+  margin: 0 auto;
+  max-width: 1200px;
+  font-family: inherit;
+  font-size: clamp(20px, 4vw, 56px);
+  color: #ffffff;
+  text-align: center;
+  line-height: 1;
+}
+
+.char {
+  will-change: transform;
+  display: inline-block;
+}
+
+.scrambled-title p {
+  margin: 0;
+}

@@ -31,13 +31,28 @@ function App() {
           left: "0",
           zIndex: "-1",
         }}
+        className="bg-[url('./background-xl.png')] bg-cover bg-center"
       >
         <Dog />
       </Canvas>
       <div id="smooth-wrapper" className=" w-full relative">
         <div id="smooth-content" className=" w-full">
-          <section className="section-1 h-screen bg-[url('./background-xl.png')] bg-cover bg-center w-full flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-white">Dog Studio</h1>
+          <section className="section-1 h-screen  w-full grid grid-cols-2">
+            <div className="h-full w-full flex items-center justify-end">
+              <div className="text-wrap w-[30%] leading-18 text-right ">
+                <h1 className="text-[5vw]">We Make Good Shit</h1>
+              </div>
+            </div>
+            <div className="h-full ">
+              <div className="h-full w-full flex items-end justify-start ">
+                <div className="text-wrap w-[30%] text-left">
+                  <p className="text-[1vw]">
+                    Dogstudio is a multidisciplinary creative studio at the
+                    intersection of art, design and technology.
+                  </p>
+                </div>
+              </div>
+            </div>
           </section>
 
           <section className="section-2 h-screen w-full flex items-center justify-center">

@@ -47,9 +47,10 @@ export const VideoPexels = async (query, page = 1, per_page = 30) => {
         per_page: per_page,
       },
       headers: {
-        Authorization: pexelsKey,
+        Authorization: pexelsKey
       },
     });
+    
     return shuffleArray(response.data.videos);
   } catch (error) {
     if (error.response) {

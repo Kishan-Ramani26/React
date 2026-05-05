@@ -1,0 +1,74 @@
+.results-grid {
+  position: relative;
+}
+
+.media-focus-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 40;
+  transition: transform 300ms cubic-bezier(0.2,0.8,0.2,1), width 300ms cubic-bezier(0.2,0.8,0.2,1), height 300ms cubic-bezier(0.2,0.8,0.2,1), opacity 180ms ease;
+  opacity: 0;
+  border-radius: 12px;
+  will-change: transform, width, height;
+  /* remove overlay visuals - corners only */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.media-focus-frame.visible {
+  opacity: 1;
+}
+
+.media-focus-frame .corner {
+  display: none;
+}
+
+.media-focus-frame .top-left {
+  top: -8px;
+  left: -8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.media-focus-frame .top-right {
+  top: -8px;
+  right: -8px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.media-focus-frame .bottom-left {
+  bottom: -8px;
+  left: -8px;
+  border-right: none;
+  border-top: none;
+}
+
+.media-focus-frame .bottom-right {
+  bottom: -8px;
+  right: -8px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Optional: subtle scale on hovered items */
+.result-item:hover img,
+.result-item:hover video {
+  transform: scale(1.02);
+  transition: transform 220ms ease;
+}
+
+.loading-shell {
+  width: 100%;
+  height: 260px;
+  min-height: 220px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}

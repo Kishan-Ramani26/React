@@ -6,4 +6,5 @@ html, body {
   font-family: 'Arial', sans-serif;
   background-color: rgba(0, 0, 0, 0.849);
   color: white;
+  overflow-x: hidden;
 }

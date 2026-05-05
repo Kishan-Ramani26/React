@@ -100,44 +100,42 @@ function Dog() {
     });
 
     tl.to(
-      modelRef.current.rotation,
+      modelRef.current.position,
       {
-        y: `-=${Math.PI * 2}`,
+        z: "-=1",
+        y: "+=0.6",
         ease: "none",
       },
       "<",
     );
 
-    tl.to(
-      modelRef.current.position,
-      {
-        z: "-=1.2",
-        y: "+=1",
-        ease: "none",
-      },
-      "<",
-    );
+    tl.to(modelRef.current.rotation,{
+      y:"+=0.3"
+    },"<")
 
     tl.to(
       modelRef.current.scale,
       {
-        x: 2,
-        y: 2,
-        z: 2,
+        x: 2.5,
+        y: 2.5,
+        z: 2.5,
         ease: "none",
       },
       "<",
     );
+    tl.to(modelRef.current.rotation, {
+      x: `+=${Math.PI * 0.1}`,
+      ease: "none",
+    });
   }, []);
-
 
   return (
     <>
       <primitive
         ref={modelRef}
         object={scene.scene}
-        position={[0.45, -1.8, 0]}
-        rotation={[0, Math.PI / 4.5, 0]}
+        position={[0.45, -1.8, 0.2]}
+        rotation={[0, Math.PI / 5, 0]}
         scale={[3, 3, 3]}
       />
       <directionalLight position={[0, 5, 5]} intensity={10} color={0xffffff} />
