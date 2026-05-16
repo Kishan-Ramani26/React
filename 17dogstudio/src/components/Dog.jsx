@@ -110,23 +110,44 @@ function Dog() {
     );
 
     tl.to(modelRef.current.rotation,{
-      y:"+=0.3"
+      y:"+=0.3",
+      x:"+=0.2"
     },"<")
 
     tl.to(
       modelRef.current.scale,
       {
-        x: 2.5,
-        y: 2.5,
-        z: 2.5,
+        x: 2.3,
+        y: 2.3,
+        z: 2.3,
         ease: "none",
       },
       "<",
     );
     tl.to(modelRef.current.rotation, {
-      x: `+=${Math.PI * 0.1}`,
+      x: `+=0.05`,
       ease: "none",
     });
+
+    tl.to(modelRef.current.rotation,{
+      y:`-=${Math.PI * 1.3}`
+    },"<")
+    tl.to(modelRef.current.position,{
+      y: "-=0.3",
+      x: "-=0.7",
+      z: "-=0.2"
+    },"<")
+    tl.to(
+      modelRef.current.scale,
+      {
+        x: 3,
+        y: 3,
+        z: 3,
+        ease: "none",
+      },
+      "<",
+    );
+
   }, []);
 
   return (
